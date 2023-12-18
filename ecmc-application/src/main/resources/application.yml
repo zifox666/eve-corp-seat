@@ -5,3 +5,8 @@ spring:
     include: db, app, mybatis, auth, logging, undertow, redis
   mvc:
     throw-exception-if-no-handler-found: true
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: -1
+      max-request-size: -1
