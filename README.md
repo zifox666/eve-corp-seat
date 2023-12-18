@@ -1,5 +1,15 @@
+## 项目介绍
+修改自雨轩的cacx军团管理系统
+1.更换了km/km_item读取中不正常的名称显示
+2.增加了对中国大陆ip被ccp屏蔽的代理接口
+3.删除了初次导入数据库时，被导入的遗留权限表
+4.修复了ccp api授权回调地址不正确导致无法正确获取token的问题
+5.修改了角色钱包api接口不正常的问题
+6.移除了登录页面本无法使用的eve登录功能
+7.对web界面的部分英文表述做了优化
+
 ## 项目目录介绍
-有问题或定制请联系 QQ：1718018032 WX：gfh229_
+有问题请邮件zifox666@gmail.com
 1. application = 军团系统主程序API
 2. biz = 军团业务处理中心
 3. discord = discord机器人程序
@@ -16,29 +26,3 @@
 7. 启动idea直接运行ecmc-application中的EcmcApplication.java
 8. 打包执行maven clean package
 9. CentOS下后台执行 `nohup java -jar ecmcApp.jar > cataline.out 2>&1 &`
-
-### 界面展示：
-![WX20230901-085242@2x.png](images%2FWX20230901-085242%402x.png)
-![WX20230901-085426@2x.png](images%2FWX20230901-085426%402x.png)
-![WX20230901-085542@2x.png](images%2FWX20230901-085542%402x.png)
-![WX20230901-085624@2x.png](images%2FWX20230901-085624%402x.png)
-![WX20230901-085642@2x.png](images%2FWX20230901-085642%402x.png)
-![WX20230901-085656@2x.png](images%2FWX20230901-085656%402x.png)
-![WX20230901-085802@2x.png](images%2FWX20230901-085802%402x.png)
-![WX20230901-085823@2x.png](images%2FWX20230901-085823%402x.png)
-![WX20230901-085845@2x.png](images%2FWX20230901-085845%402x.png)
-![WX20230901-085939@2x.png](images%2FWX20230901-085939%402x.png)
-![WX20230901-090031@2x.png](images%2FWX20230901-090031%402x.png)
-![WX20230901-090112@2x.png](images%2FWX20230901-090112%402x.png)
-![WX20230901-090138@2x.png](images%2FWX20230901-090138%402x.png)
-![WX20230901-090204@2x.png](images%2FWX20230901-090204%402x.png)
-![WX20230901-090223@2x.png](images%2FWX20230901-090223%402x.png)
-![WX20230901-090238@2x.png](images%2FWX20230901-090238%402x.png)
-![WX20230901-090411@2x.png](images%2FWX20230901-090411%402x.png)
-![WX20230901-090428@2x.png](images%2FWX20230901-090428%402x.png)
-![WX20230901-090446@2x.png](images%2FWX20230901-090446%402x.png)
-![WX20230901-090503@2x.png](images%2FWX20230901-090503%402x.png)
-![WX20230901-090540@2x.png](images%2FWX20230901-090540%402x.png)
-![WX20230901-091113@2x.png](images%2FWX20230901-091113%402x.png)
-![WX20230901-091122@2x.png](images%2FWX20230901-091122%402x.png)
-![WX20230901-091136@2x.png](images%2FWX20230901-091136%402x.png)
