@@ -25,13 +25,28 @@ function doAction(title){
       go('/esi')
       break
     case '提交补损':
-      go('/utils/srp')
+      go('/data/srp')
       break
     case '修改信息':
       go('/account/setting')
       break
     case '收支统计':
       go('/account/analysis')
+      break
+    case '跳跃规划':
+      window.open('https://eve.sgfans.org/navigator/jump_path_layout')
+      break
+    case '军团wiki':
+      window.open('https://wiki.phoenixcity.online')
+      break
+    case 'DScan':
+      window.open('https://dscan.info')
+      break
+    case '合同估价':
+      window.open('https://janice.e-351.com/')
+      break
+    case '联盟SeAT':
+      window.open('https://seat.winterco.org')
       break
     default:
       createMessage.warning('此功能正在开发中.')

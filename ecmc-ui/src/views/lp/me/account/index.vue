@@ -6,9 +6,9 @@
       <template #toolbar>
         <Alert type="success" style="height: 32px">
           <template #message>
-            （仅统计本页面, 角色过多请手动选择分页数据） 总获取LP：{{ totalLP }}，剩余LP：{{
+            总获取火鸡点：{{ totalLP }}，剩余火鸡点：{{
               nowLP
-            }}，已使用LP：{{ useLP }}
+            }}，已使用火鸡点：{{ useLP }}
           </template>
         </Alert>
       </template>

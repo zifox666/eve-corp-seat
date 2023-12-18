@@ -29,19 +29,19 @@ export const columns: BasicColumn[] = [
   },
   {
     sorter: true,
-    title: 'LP总数',
+    title: '火鸡点总数',
     dataIndex: 'lpTotal',
     width: 120
   },
   {
     sorter: true,
-    title: '已使用LP',
+    title: '已使用火鸡点',
     dataIndex: 'lpUse',
     width: 120
   },
   {
     sorter: true,
-    title: '剩余LP',
+    title: '剩余火鸡点',
     dataIndex: 'lpNow',
     width: 120
   },
@@ -91,7 +91,7 @@ export const crudFormSchema: FormSchema[] = [
     field: 'corp',
     label: '军团成员',
     component: 'RadioGroup',
-    helpMessage: '选择后,系统中注册的非主军团成员无法获得LP',
+    helpMessage: '选择后,系统中注册的非主军团成员无法获得火鸡点',
     componentProps: {
       options: [
         { label: '是', value: true },

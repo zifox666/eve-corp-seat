@@ -242,6 +242,7 @@ public class UserService extends BaseService<User, UserMapper> {
      */
     public void registerMail(String email) {
         String code = RandomUtil.randomString(6).toUpperCase();
+        //String code = String.valueOf(123456);
         InputStream in = new ClassPathResource("template/email/register.html").getStream();
         Mail.create(MailHelper.defaultMailAccount())
                 .setTos(email)
@@ -281,10 +282,12 @@ public class UserService extends BaseService<User, UserMapper> {
     public void register(RegisterDto registerDto) {
         // 判断邮箱验证码是否正确
         String emailCode = redis.hGet(CacheKey.EMAIL_CODE, registerDto.getEmail());
+
         if (!emailCode.equalsIgnoreCase(registerDto.getCode())) {
             throw new BizException("邮箱验证码输入错误");
         }
         redis.del(CacheKey.EMAIL_CODE, registerDto.getEmail());
+
         // 判断用户名是否存在
         boolean exist = checkFieldExist("username", registerDto.getUsername(), null);
         if (exist) {

@@ -65,7 +65,7 @@ public class LpService extends BaseService<LpLog, LpLogMapper> {
         List<UserAccount> userAccountList = userAccountMapper.selectList(wrapper);
 
         if (userAccountList.isEmpty()) {
-            throw new BizException("LP发放失败,您复制的名单在系统中均为注册");
+            throw new BizException("火鸡点发放失败,您复制的名单在系统中均为注册");
         }
 
         List<LpLog> saveLogList = new ArrayList<>();

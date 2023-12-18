@@ -39,7 +39,7 @@ public class EsiService {
      */
     @SneakyThrows
     public String callback(String code, String state) {
-        return ConfigKit.get(CacheKey.WEB_SITE) + "esi/wait?code=" + code;
+        return ConfigKit.get(CacheKey.WEB_SITE) + "/#/esi/wait?code=" + code;
     }
 
 }

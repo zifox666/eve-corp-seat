@@ -152,11 +152,11 @@ public class OpenAccountApiService extends BaseService<UserAccount, UserAccountM
      */
     public String lp(long qq) {
         AccountInfo accountInfo = getAccountByQQ(qq);
-        String result = accountInfo.getNickName() + " 您的LP统计如下:\r\n";
+        String result = accountInfo.getNickName() + " 您的火鸡点统计如下:\r\n";
         result += "共获得: " + accountInfo.getAccountList().stream().map(UserAccount::getLpTotal).reduce(BigDecimal.ZERO, BigDecimal::add);
         result += "\r\n已使用: " + accountInfo.getAccountList().stream().map(UserAccount::getLpUse).reduce(BigDecimal.ZERO, BigDecimal::add);
         result += "\r\n现剩余: " + accountInfo.getAccountList().stream().map(UserAccount::getLpNow).reduce(BigDecimal.ZERO, BigDecimal::add);
-        result += "\r\n感谢您为混沌做出的贡献!";
+        result += "\r\n感谢您为PC做出的贡献!";
         return result;
     }
 

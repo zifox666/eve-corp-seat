@@ -65,16 +65,16 @@ export default {
     signUpFormTitle: '注册',
     forgetFormTitle: '重置密码',
 
-    signInTitle: '混沌军团管理系统',
-    signInDesc: '混沌有你更加美好！',
-    policy: '我同意xxx隐私政策',
+    signInTitle: 'Phoenix City SeAT',
+    signInDesc: '欢迎访问火鸡城军团中心',
+    policy: '我同意隐私政策',
     scanSign: '扫码后点击"确认"，即可完成登录',
 
     loginButton: '登录',
     registerButton: '注册',
     rememberMe: '记住我',
     forgetPassword: '忘记密码?',
-    otherSignIn: '其他登录方式',
+    otherSignIn: 'V0.0.5',
 
     // notify
     loginSuccessTitle: '登录成功',

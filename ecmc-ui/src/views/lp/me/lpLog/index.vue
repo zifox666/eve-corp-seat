@@ -29,7 +29,7 @@ const props = defineProps({
 })
 
 const [registerTable, { reload }] = useTable({
-  title: 'LP记录',
+  title: '火鸡点记录',
   titleHelpMessage: '默认查询全部角色',
   api: listLpLogByAccountId,
   rowKey: 'id',

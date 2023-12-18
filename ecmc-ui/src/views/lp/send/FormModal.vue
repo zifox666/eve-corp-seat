@@ -24,7 +24,7 @@ const [registerForm, { setFieldsValue, resetFields, validate }] = useForm({
   },
 })
 const { createMessage } = useMessage()
-const getTitle = 'LP发放'
+const getTitle = '火鸡点发放'
 const [registerModal, { setModalProps, closeModal }] = useModalInner(async (data) => {
   await resetFields()
   setModalProps({ confirmLoading: false })
@@ -43,7 +43,7 @@ async function handleSubmit() {
     const values = await validate()
     setModalProps({ confirmLoading: true })
     await sendLP(values)
-    createMessage.success('LP发放成功！')
+    createMessage.success('火鸡点发放成功！')
     closeModal()
     emit('success', { isUpdate: unref(isUpdate), values: { ...values, id: rowId.value } })
   } finally {

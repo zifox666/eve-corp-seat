@@ -2,9 +2,9 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/eve_corp_manager_cacx?useSSL=false
+    url: jdbc:mysql://your_host:your_port/eve_corp_manager_cacx?useSSL=false&allowPublicKeyRetrieval=true
     username: root
-    password: root
+    password:
     ##  Hikari 连接池配置 ------ 详细配置请访问：https://github.com/brettwooldridge/HikariCP
     hikari:
       ## 最小空闲连接数量

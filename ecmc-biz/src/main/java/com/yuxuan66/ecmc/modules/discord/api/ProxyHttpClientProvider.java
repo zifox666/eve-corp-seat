@@ -24,7 +24,7 @@ public class ProxyHttpClientProvider implements OkHttpClientProvider {
                 .followSslRedirects(false)
                 .retryOnConnectionFailure(false)
                 .followRedirects(false)
-                .proxy(new Proxy(Proxy.Type.SOCKS,new InetSocketAddress("127.0.0.1",10808)))
+                .proxy(new Proxy(Proxy.Type.SOCKS,new InetSocketAddress("192.168.0.110",7890)))
                 .build();
     }
 }

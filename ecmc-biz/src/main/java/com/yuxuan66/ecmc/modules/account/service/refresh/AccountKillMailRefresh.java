@@ -1,6 +1,7 @@
 package com.yuxuan66.ecmc.modules.account.service.refresh;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.dtflys.forest.annotation.HTTPProxy;
 import com.yuxuan66.ecmc.cache.EveCache;
 import com.yuxuan66.ecmc.cache.entity.Type;
 import com.yuxuan66.ecmc.common.utils.Lang;
@@ -36,6 +37,7 @@ import java.util.Objects;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@HTTPProxy(host = "192.168.0.110" , port = "7890")
 public class AccountKillMailRefresh {
 
     private final EveCache eveCache;
@@ -46,6 +48,15 @@ public class AccountKillMailRefresh {
 
     @Async("threadPoolTaskExecutor")
     public void refresh(UserAccount userAccount, Map<Integer,Type> typeMap,List<AccountKillMail> killMailList) {
+
+        // 设置 HTTP 代理
+        System.setProperty("http.proxyHost", "192.168.0.110");
+        System.setProperty("http.proxyPort", "7890");
+
+        // 设置 HTTPS 代理
+        System.setProperty("https.proxyHost", "192.168.0.110");
+        System.setProperty("https.proxyPort", "7890");
+
         userAccount.esiClient();
         KillmailsApi kmApi = new KillmailsApi();
        try{
@@ -69,8 +80,12 @@ public class AccountKillMailRefresh {
                accountKillMail.setIsNpc(killmailData.getAttackers().stream().noneMatch(item -> item.getCharacterId() != null));
                accountKillMail.setSolarSystemId(killmailData.getSolarSystemId());
                accountKillMail.setSolarSystemName(eveCache.getSolarSystemName(accountKillMail.getSolarSystemId()).getName());
+
                accountKillMail.setShipTypeId(killmailData.getVictim().getShipTypeId());
-               accountKillMail.setShipTypeName(eveCache.getTypeMap().getOrDefault(killmailData.getVictim().getShipTypeId(),new Type()).getName());
+               //accountKillMail.setShipTypeName(eveCache.getTypeMap().getOrDefault(killmailData.getVictim().getShipTypeId(),new Type()).getName());
+               accountKillMail.setShipTypeName(eveCache.typeName(killmailData.getVictim().getShipTypeId()).getName());
+               //accountKillMail.setShipTypeName(typeMap.get(killmailData.getVictim().getShipTypeId()).getName());
+
                accountKillMail.setAccountId(userAccount.getId());
                accountKillMail.setUserId(userAccount.getUserId());
 
@@ -92,7 +107,8 @@ public class AccountKillMailRefresh {
                    AccountKillMailItem mailItem = new AccountKillMailItem();
                    mailItem.setKillMailId(accountKillMail.getId());
                    mailItem.setTypeId(item.getItemTypeId());
-                   mailItem.setName(typeMap.getOrDefault(item.getItemTypeId(), new Type()).getName());
+                   //mailItem.setName(typeMap.getOrDefault(item.getItemTypeId(), new Type()).getName());
+                   mailItem.setName(eveCache.typeName(item.getItemTypeId()).getName());
                    mailItem.setNum(item.getQuantityDropped() == null ? item.getQuantityDestroyed() : item.getQuantityDropped());
                    mailItem.setType(item.getQuantityDropped() != null ? "销毁" : "掉落");
                    mailItem.setPrice(new BigDecimal(eveCache.getMinSellPrice(item.getItemTypeId())).multiply(new BigDecimal(mailItem.getNum())));

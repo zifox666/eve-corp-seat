@@ -5,7 +5,7 @@
         <template #btn>
           <a-button type="primary" @click="handleFly" :loading="showFlyLoading"
                     style="position: absolute;top: 4px;right: 10px;z-index: 20;" preIcon="fly|svg">
-            发布留言
+            发布公告
           </a-button>
         </template>
       </Tinymce>
@@ -67,18 +67,18 @@ const ListItemMeta = List.Item.Meta
 const { createMessage, createConfirm } = useMessage()
 
 function handleFly() {
-  if (content.value.length < 10) {
-    createMessage.error('请输入至少10个字符才能发布动态.')
+  if (content.value.length < 5) {
+    createMessage.error('请输入至少5个字符才能发布公告.')
     return
   }
   createConfirm({
     iconType: 'warning',
     title: '提示',
-    content: '确认发布留言吗？请确保您发布的内容合法合规。如您的内容不符合规范可能会被删除留言并冻结账号',
+    content: '确认发布公告吗？请确保您发布的内容合法合规。如您的内容不符合规范可能会被删除留言并冻结账号',
     onOk: async () => {
       showFlyLoading.value = true
       await add({ content: content.value })
-      createMessage.success('留言发布成功')
+      createMessage.success('公告发布成功')
       await fetch()
       content.value = ''
       showFlyLoading.value = false

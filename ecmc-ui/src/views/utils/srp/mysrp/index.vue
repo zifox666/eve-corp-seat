@@ -25,9 +25,9 @@
               </Select>
             </FormItem>
             <FormItem name="content"
-                      label="集结信息(请明确说明指挥/教官ID，集结性质等信息，否则拒绝补损)"
-                      :rules="[{ required: true, message: '请输入集结信息或备注' }]">
-              <InputTextArea v-model:value="formData.content" placeholder="请输入集结信息或备注"/>
+                      label="补损理由(跟军团队请写明fc，单浪玩耍请写下PVP心得，心得将会酌情加分)"
+                      :rules="[{ required: true, message: '请输入心得或备注' }]">
+              <InputTextArea v-model:value="formData.content" placeholder="请输入心得或备注"/>
             </FormItem>
             <FormItem style="text-align: right">
               <Button type="primary" :loading="submitLoading" @click="onSubmit">提交</Button>

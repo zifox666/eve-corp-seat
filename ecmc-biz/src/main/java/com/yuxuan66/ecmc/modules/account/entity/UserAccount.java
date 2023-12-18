@@ -8,6 +8,7 @@ import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.dtflys.forest.annotation.HTTPProxy;
 import com.yuxuan66.ecmc.cache.ConfigKit;
 import com.yuxuan66.ecmc.cache.key.CacheKey;
 import com.yuxuan66.ecmc.common.esi.EsiHelper;
@@ -26,7 +27,10 @@ import net.troja.eve.esi.auth.JWT;
 import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 import java.sql.Timestamp;
+
 
 /**
  * 军团用户角色表(CorpUserAccount)实体类
@@ -38,6 +42,7 @@ import java.sql.Timestamp;
 @Data
 @ToString
 @TableName("corp_user_account")
+@HTTPProxy(host = "192.168.0.110" , port = "7890")
 public class UserAccount extends BaseEntity<UserAccount> implements Serializable {
     @Serial
     private static final long serialVersionUID = -80069397898096666L;
@@ -63,7 +68,7 @@ public class UserAccount extends BaseEntity<UserAccount> implements Serializable
     /**
      * ESI/Token
      */
-    @ExcelColumn(name = "ESI状态", sort = 4, handler = NullHandler.class, trueVal = "ERROR", falseVal = "CACX FULL")
+    @ExcelColumn(name = "ESI状态", sort = 4, handler = NullHandler.class, trueVal = "ERROR", falseVal = "ONLINE")
     private String accessToken;
     /**
      * AccessToken过期时间
@@ -133,7 +138,15 @@ public class UserAccount extends BaseEntity<UserAccount> implements Serializable
      *
      * @return ESI客户端
      */
+
     public ApiClient esiClient() {
+        // 设置 HTTP 代理
+        System.setProperty("http.proxyHost", "192.168.0.110");
+        System.setProperty("http.proxyPort", "7890");
+
+        // 设置 HTTPS 代理
+        System.setProperty("https.proxyHost", "192.168.0.110");
+        System.setProperty("https.proxyPort", "7890");
         try {
             // 创建ESI对象,刷新Token
             ApiClient client = EsiHelper.newClient();
@@ -142,8 +155,11 @@ public class UserAccount extends BaseEntity<UserAccount> implements Serializable
             if (this.getAccessExp() != null && this.getAccessExp().getTime() - minute > System.currentTimeMillis()) {
                 return client;
             }
+            Proxy proxy = new Proxy(Proxy.Type.SOCKS, new InetSocketAddress("192.168.0.110", 7890));
             // 刷新Token
             HttpRequest request = HttpUtil.createPost("https://login.eveonline.com/v2/oauth/token");
+            request.setProxy(proxy);
+
             request.form("grant_type", "refresh_token");
             request.form("refresh_token", this.getRefreshToken());
             request.header("Authorization", "Basic " + Base64.encode(ConfigKit.get(CacheKey.EVE_ESI_CLIENT_ID) + ":" + ConfigKit.get(CacheKey.EVE_ESI_SECRET_KEY)));

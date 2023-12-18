@@ -1,5 +1,7 @@
 package com.yuxuan66.ecmc.modules.account.service.refresh;
 
+import com.dtflys.forest.annotation.HTTPProxy;
+import com.yuxuan66.ecmc.cache.EveCache;
 import com.yuxuan66.ecmc.common.utils.Lang;
 import com.yuxuan66.ecmc.modules.account.entity.AccountWallet;
 import com.yuxuan66.ecmc.modules.account.entity.UserAccount;
@@ -16,6 +18,13 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.*;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
+import cn.hutool.core.codec.Base64;
+import cn.hutool.core.convert.Convert;
+import cn.hutool.http.HttpRequest;
+import cn.hutool.http.HttpResponse;
+import cn.hutool.http.HttpUtil;
 
 /**
  * 刷新用户技能队列
@@ -26,17 +35,27 @@ import java.util.*;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@HTTPProxy(host = "192.168.0.110" , port = "7890")
 public class AccountWalletRefresh {
+
+    private final EveCache eveCache;
 
     @Resource
     private AccountWalletMapper accountWalletMapper;
 
     @Async("threadPoolTaskExecutor")
     public void refresh(UserAccount userAccount) {
+        // 设置 HTTP 代理
+        System.setProperty("http.proxyHost", "192.168.0.110");
+        System.setProperty("http.proxyPort", "7890");
+
+        // 设置 HTTPS 代理
+        System.setProperty("https.proxyHost", "192.168.0.110");
+        System.setProperty("https.proxyPort", "7890");
         userAccount.esiClient();
         WalletApi walletApi = new WalletApi();
         try {
-            List<CharacterWalletJournalResponse> walletJournal = walletApi.getCharactersCharacterIdWalletJournal(userAccount.getCharacterId(), "", "", 1,null);
+            List<CharacterWalletJournalResponse> walletJournal = walletApi.getCharactersCharacterIdWalletJournal(userAccount.getCharacterId(), "", "", 1,userAccount.getAccessToken());
             List<AccountWallet> accountWalletList = new ArrayList<>();
             AccountWallet lastId = accountWalletMapper.getLastId(userAccount.getId());
             List<CharacterWalletJournalResponse> saveList = walletJournal.stream().filter(item -> item.getId() > (lastId == null ? 0 : lastId.getJournalId())).toList();

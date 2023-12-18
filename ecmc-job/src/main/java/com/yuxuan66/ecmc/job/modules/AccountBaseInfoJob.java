@@ -26,7 +26,7 @@ public class AccountBaseInfoJob {
     private final UserAccountService userAccountService;
     private final AccountWalletRefresh accountWalletRefresh;
 
-    @Scheduled(cron = "0 0 * ? * *")
+    @Scheduled(cron = "0 0 * * * *")
     public void process() throws Exception {
         List<UserAccount> userAccountList = userAccountMapper.selectList(null);
         for (UserAccount userAccount : userAccountList) {

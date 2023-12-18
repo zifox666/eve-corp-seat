@@ -252,7 +252,7 @@ public class UserAccountService extends BaseService<UserAccount, UserAccountMapp
     public void addOrUpdateAccount(String code) {
         try {
             OAuth oAuth = EsiHelper.defaultOAuth();
-            oAuth.finishFlow(code, "", ConfigKit.get(CacheKey.EVE_ESI_SECRET_KEY));
+            oAuth.finishFlow(code, "", ConfigKit.get(CacheKey. EVE_ESI_SECRET_KEY));
             JWT authJwt = oAuth.getJWT();
             int characterId = authJwt.getPayload().getCharacterID();
             String characterName = authJwt.getPayload().getName();
@@ -273,7 +273,7 @@ public class UserAccountService extends BaseService<UserAccount, UserAccountMapp
                 // 角色已经存在，直接刷新角色信息
                 userAccount = accountList.get(0);
                 if (!userAccount.getUserId().equals(StpUtil.getLoginId())) {
-                    throw new BizException("此角色已被别的账号绑定，高老板说禁止重复绑定！");
+                    throw new BizException("此角色已被别的账号绑定，禁止重复绑定！");
                 }
                 userAccount.setUserId(StpUtil.getLoginId());
                 userAccount.setCharacterId(characterId);
@@ -426,6 +426,7 @@ public class UserAccountService extends BaseService<UserAccount, UserAccountMapp
     public List<AccountKillMail> listKillMail() {
         List<Long> kmList = srpLogMapper.selectList(new QueryWrapper<SrpLog>().eq("user_id", StpUtil.getLoginId()).select("kill_mail_id")).stream().map(SrpLog::getKillMailId).toList();
         List<AccountKillMail> accountKillMails = accountKillMailMapper.selectList(new QueryWrapper<AccountKillMail>().eq("user_id", StpUtil.getLoginId()).orderByDesc("kill_mail_time"));
+
         for (AccountKillMail killMail : accountKillMails) {
             killMail.setSrp(kmList.contains(killMail.getId()));
         }

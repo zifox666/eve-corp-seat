@@ -2,6 +2,7 @@ package com.yuxuan66.ecmc.support.base;
 
 import cn.hutool.core.collection.ListUtil;
 import cn.hutool.core.util.PageUtil;
+import com.dtflys.forest.annotation.HTTPProxy;
 import com.yuxuan66.ecmc.cache.EveCache;
 import com.yuxuan66.ecmc.cache.entity.Type;
 import net.troja.eve.esi.ApiException;
@@ -16,7 +17,9 @@ import java.util.*;
  * @author Sir丶雨轩
  * @since 2022/12/27
  */
+@HTTPProxy(host = "192.168.0.110" , port = "7890")
 public class BaseRefresh {
+
 
     @Resource
     private EveCache eveCache;

@@ -1,9 +1,9 @@
 {
   "name": "ecmc-ui",
-  "version": "0.0.1",
+  "version": "1.0.6",
   "author": {
-    "name": "Sir丶雨轩",
-    "email": "1718018032@qq.com"
+    "name": "倒霉蛋梓狐",
+    "email": "zifox666@gmail.com"
   },
   "scripts": {
     "commit": "czg",

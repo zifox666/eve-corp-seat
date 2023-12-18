@@ -37,7 +37,7 @@ export const navItems: NavItem[] = [
     color: '#e18525',
   },
   {
-    title: '技能规划',
+    title: '联盟SeAT',
     icon: 'ion:settings-outline',
     color: '#3fb27f',
   },
@@ -48,6 +48,11 @@ export const navItems: NavItem[] = [
   },
   {
     title: '跳跃规划',
+    icon: 'ion:bar-chart-outline',
+    color: '#00d8ff',
+  },
+  {
+    title: '军团wiki',
     icon: 'ion:bar-chart-outline',
     color: '#00d8ff',
   },

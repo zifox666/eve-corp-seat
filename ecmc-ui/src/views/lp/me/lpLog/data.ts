@@ -4,7 +4,7 @@ import { BasicColumn, FormSchema } from '/@/components/Table'
 export const columns: BasicColumn[] = [
   {
     sorter: true,
-    title: 'LP数量',
+    title: '火鸡点数量',
     dataIndex: 'lp',
     width: 70,
   },

@@ -65,10 +65,10 @@ public class EveCache {
      */
     public long getMinSellPrice(Integer id) {
 
-        return JSONObject.parseArray(HttpUtil.get("https://api.evemarketer.com/ec/marketstat/json?typeid="+id+"&regionlimit=10000002&usesystem=30000142")).getJSONObject(0)
-                .getJSONObject("sell")
-                .getLongValue("min");
-        //return JSONObject.parseObject(HttpUtil.get("https://www.ceve-market.org/tqapi/market/region/10000002/system/30000142/type/" + id + ".json")).getJSONObject("sell").getLongValue("min");
+        //return JSONObject.parseArray(HttpUtil.get("https://api.evemarketer.com/ec/marketstat/json?typeid="+id+"&regionlimit=10000002&usesystem=30000142")).getJSONObject(0)
+                //.getJSONObject("sell")
+                //.getLongValue("min");
+        return JSONObject.parseObject(HttpUtil.get("https://www.ceve-market.org/tqapi/market/region/10000002/system/30000142/type/" + id + ".json")).getJSONObject("sell").getLongValue("min");
     }
 
     /**
@@ -99,6 +99,7 @@ public class EveCache {
         return typeMap;
     }
 
+
     /**
      * 获取一个物品得信息
      *
@@ -108,7 +109,7 @@ public class EveCache {
     @SneakyThrows
     @Cacheable(cacheNames = "ESI:API:TypeName", key = "#typeId")
     public TypeResponse typeName(int typeId) {
-        return new UniverseApi().getUniverseTypesTypeId(typeId, "zh", null, null, "zh");
+        return new UniverseApi().getUniverseTypesTypeId(typeId, "zh", "", null, "zh");
     }
 
     /**

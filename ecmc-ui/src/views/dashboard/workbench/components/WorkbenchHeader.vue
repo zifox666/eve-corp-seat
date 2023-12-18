@@ -18,7 +18,7 @@
         <span class="text-2xl">无</span>
       </div>
       <div class="flex flex-col justify-center text-right md:mr-10 mr-4">
-        <span class="text-secondary"> LP </span>
+        <span class="text-secondary"> 火鸡点 </span>
         <span class="text-2xl">{{ homeData.lp }}</span>
       </div>
       <div class="flex flex-col justify-center text-right md:mr-10 mr-4">

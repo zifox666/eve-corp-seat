@@ -33,7 +33,7 @@ public class AccountKmJob  {
     private AccountKillMailMapper accountKillMailMapper;
     private final AccountKillMailRefresh accountKillMailRefresh;
 
-    @Scheduled(cron = "0 25 * ? * *")
+    @Scheduled(cron = "0 */20 * * * *")
     public void process( ) throws Exception {
         List<UserAccount> userAccountList = userAccountMapper.selectList(null);
         Map<Integer, Type> typeMap = eveCache.getTypeMap();

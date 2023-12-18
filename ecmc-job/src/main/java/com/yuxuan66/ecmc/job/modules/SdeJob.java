@@ -45,7 +45,7 @@ public class SdeJob  {
     public void process() throws Exception {
         // 开始读取各个文件清洗数据库并清洗缓存
         // 第一步 语言包
-        String basePath = "";
+        String basePath = "/home/ubuntu/seat/target/src";
 
         // 第二步 分类
         List<Category> categoryList = SdeUtil.getCategoryList(basePath);

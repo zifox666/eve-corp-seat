@@ -26,7 +26,7 @@ export const columns: BasicColumn[] = [
   },
   {
     sorter: true,
-    title: 'LP数量',
+    title: '火鸡点数量',
     dataIndex: 'lp',
     width: 120,
   },
@@ -101,7 +101,7 @@ export const crudFormSchema: FormSchema[] = [
   },
   {
     field: 'lp',
-    label: 'LP数量',
+    label: '火鸡点数量',
     component: 'InputNumber',
     required: true,
     defaultValue: 1,

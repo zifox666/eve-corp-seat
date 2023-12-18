@@ -2,7 +2,7 @@
   <PageWrapper dense contentFullHeight contentClass="flex">
     <BasicTable @register="registerTable" :searchInfo="searchInfo">
       <template #toolbar>
-        <a-button type="primary" @click="handleFly" preIcon="fly|svg">发放LP</a-button>
+        <a-button type="primary" @click="handleFly" preIcon="fly|svg">发放火鸡点</a-button>
       </template>
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'characterName'">
@@ -28,7 +28,7 @@
             :actions="[
               {
                 icon: 'fly|svg',
-                tooltip: '发放LP',
+                tooltip: '发放火鸡点',
                 onClick: handleFly.bind(null, record),
               }
             ]"

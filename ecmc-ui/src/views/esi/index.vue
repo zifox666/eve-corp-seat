@@ -6,8 +6,8 @@
           <template #message>
             您可以通过绑定小号按钮添加角色授权,弹出授权网站为CPP官方网站,如果无法打开请自行梯子,如果登录发生异常情况,请联系
             QQ:
-            <A href="tencent://message/?uin=1718018032&amp;Site=军团网站&amp; Menu=yes">
-              1718018032</A>
+            <A href="tencent://message/?uin=3038125129&amp;Site=https://seat.phoenixcity.online&amp; Menu=yes">
+              3038125129</A>
           </template>
         </Alert>
         <a-button type="primary" @click="handleCreate" preIcon="ant-design:plus-outlined">绑定小号
@@ -37,7 +37,7 @@
         </template>
         <template v-if="column.key === 'esi'">
           <Tag :color="record.accessToken ? 'green' : 'blue'">
-            {{ record.accessToken ? 'CACX FULL' : 'ERROR' }}
+            {{ record.accessToken ? 'ONLINE' : 'ERROR' }}
           </Tag>
         </template>
         <template v-if="column.key === 'isMain'">

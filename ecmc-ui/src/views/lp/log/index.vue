@@ -34,7 +34,7 @@ import { columns, searchFormSchema } from './data'
 import { BasicTable, useTable } from '/@/components/Table'
 const searchInfo = reactive<Recordable>({})
 const [registerTable] = useTable({
-  title: 'LP发放记录',
+  title: '火鸡点发放记录',
   api: listLpLog,
   rowKey: 'id',
   columns,

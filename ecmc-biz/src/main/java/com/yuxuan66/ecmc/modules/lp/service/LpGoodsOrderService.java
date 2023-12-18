@@ -117,7 +117,7 @@ public class LpGoodsOrderService extends BaseService<LpGoodsOrder, LpGoodsOrderM
 
             }
             // 发送邮件
-            MailApi.send(userAccountService.getMainAccount(),"LP商品兑换审批完成",EsiMailTemplate.getOrderApprovalNotice(order,orderDto), List.of(new MailApi.Recipient(order.getCharacterId(), Recipient.RecipientTypeEnum.CHARACTER)));
+            MailApi.send(userAccountService.getMainAccount(),"火鸡点商品兑换审批完成",EsiMailTemplate.getOrderApprovalNotice(order,orderDto), List.of(new MailApi.Recipient(order.getCharacterId(), Recipient.RecipientTypeEnum.CHARACTER)));
         }
 
     }
