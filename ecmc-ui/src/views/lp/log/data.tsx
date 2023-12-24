@@ -43,7 +43,7 @@ export const columns: BasicColumn[] = [
   {
     sorter: true,
     title: '备注',
-    dataIndex: 'num',
+    dataIndex: 'content',
     width: 120,
   },
   {
