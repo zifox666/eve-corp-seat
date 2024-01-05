@@ -1,5 +1,6 @@
 package com.yuxuan66.ecmc.modules.utils.entity;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.io.Serializable;
 
@@ -42,6 +43,13 @@ public class SrpLog extends BaseEntity<SrpLog> implements Serializable {
      * 审批备注
      */
     private String spContent;
+
+    /**
+     * 补损金额
+     * 如果待审批即为参考报价
+     * 如果已通过即为实补金额
+     */
+    private BigDecimal amount;
 
     /**
      * 用户击杀信息

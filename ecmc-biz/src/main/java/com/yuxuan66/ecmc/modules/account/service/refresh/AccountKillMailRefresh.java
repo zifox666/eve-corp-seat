@@ -37,7 +37,7 @@ import java.util.Objects;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-@HTTPProxy(host = "192.168.0.110" , port = "7890")
+@HTTPProxy(host = "192.168.1.7" , port = "7890")
 public class AccountKillMailRefresh {
 
     private final EveCache eveCache;
@@ -50,11 +50,11 @@ public class AccountKillMailRefresh {
     public void refresh(UserAccount userAccount, Map<Integer,Type> typeMap,List<AccountKillMail> killMailList) {
 
         // 设置 HTTP 代理
-        System.setProperty("http.proxyHost", "192.168.0.110");
+        System.setProperty("http.proxyHost", "192.168.1.7");
         System.setProperty("http.proxyPort", "7890");
 
         // 设置 HTTPS 代理
-        System.setProperty("https.proxyHost", "192.168.0.110");
+        System.setProperty("https.proxyHost", "192.168.1.7");
         System.setProperty("https.proxyPort", "7890");
 
         userAccount.esiClient();

@@ -30,6 +30,15 @@ export const columns: BasicColumn[] = [
     }
   },
   {
+    title: '参考补损金额',
+    width: 150,
+    align: 'left',
+    customRender({ record }){
+      console.log(record)
+      return toThousands(record.amount) + ' ISK'
+    }
+  },
+  {
     title: '损失地点',
     dataIndex: 'solarSystemName',
     width: 100,

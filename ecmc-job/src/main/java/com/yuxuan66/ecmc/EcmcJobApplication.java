@@ -18,7 +18,7 @@ import org.springframework.boot.CommandLineRunner;
 @EnableCaching
 @EnableAsync
 @EnableScheduling
-@HTTPProxy(host = "192.168.0.110" , port = "7890")
+@HTTPProxy(host = "192.168.1.7" , port = "7890")
 /*public class EcmcJobApplication {
 
     public static void main(String[] args) {
@@ -36,11 +36,11 @@ public class EcmcJobApplication implements CommandLineRunner {
     public static void main(String[] args) {
 
         // 设置 HTTP 代理
-        System.setProperty("http.proxyHost", "192.168.0.110");
+        System.setProperty("http.proxyHost", "192.168.1.7");
         System.setProperty("http.proxyPort", "7890");
 
         // 设置 HTTPS 代理
-        System.setProperty("https.proxyHost", "192.168.0.110");
+        System.setProperty("https.proxyHost", "192.168.1.7");
         System.setProperty("https.proxyPort", "7890");
 
         SpringApplication.run(EcmcJobApplication.class, args);

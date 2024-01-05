@@ -23,7 +23,10 @@ public class SrpLogController extends BaseController<SrpLogService> {
      */
     @GetMapping
     public Ps list(SrpLogQuery logQuery){
-        return baseService.list(logQuery);
+
+        Ps list = baseService.list(logQuery);
+        System.out.println(list);
+        return list;
     }
 
 

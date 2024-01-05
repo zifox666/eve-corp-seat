@@ -51,6 +51,15 @@ export const columns: BasicColumn[] = [
         color={record.status === 2 ? 'green' : (record.status === 1 ? 'yellow' : 'red')}>{record.status === 1 ? '等待' : (record.status === 2 ? '通过' : '拒绝')}</Tag>
     }
   },
+  {
+    title: '实补金额',
+    dataIndex: 'lpUse',
+    width: 100,
+    align: 'left',
+    customRender({ record }){
+      return toThousands(record.amount) + ' ISK'
+    }
+  },
 ]
 
 

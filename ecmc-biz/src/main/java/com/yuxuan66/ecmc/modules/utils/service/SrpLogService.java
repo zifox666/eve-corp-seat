@@ -75,7 +75,7 @@ public class SrpLogService extends BaseService<SrpLog, SrpLogMapper> {
             throw new BizException("此KM已经提交过了，请不要重复提交");
         }
         srpLog.setUserId(StpUtil.getLoginId());
-
+//        System.out.println(srpLog.get);
         AccountKillMail killMail = accountKillMailMapper.selectById(srpLog.getKillMailId());
 
         // 黑名单拦截
