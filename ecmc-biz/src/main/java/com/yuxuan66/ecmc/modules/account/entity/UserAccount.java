@@ -47,9 +47,11 @@ import java.sql.Timestamp;
 public class UserAccount extends BaseEntity<UserAccount> implements Serializable {
 
     @Value("${proxy.host}")
+    @TableField(exist = false)
     private String proxyHost;
 
     @Value("${proxy.port}")
+    @TableField(exist = false)
     private String proxyPort;
     @Serial
     private static final long serialVersionUID = -80069397898096666L;
