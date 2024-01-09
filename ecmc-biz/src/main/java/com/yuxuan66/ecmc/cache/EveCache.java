@@ -9,6 +9,7 @@ import com.yuxuan66.ecmc.cache.mapper.TypeMapper;
 import com.yuxuan66.ecmc.cache.redis.RedisKit;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import net.troja.eve.esi.ApiResponse;
 import net.troja.eve.esi.api.AllianceApi;
 import net.troja.eve.esi.api.CharacterApi;
 import net.troja.eve.esi.api.CorporationApi;
@@ -179,6 +180,17 @@ public class EveCache {
     @Cacheable(cacheNames = "ESI:API:CharacterInfo", key = "#characterId")
     public CharacterResponse getCharacterInfo(int characterId) {
         return new CharacterApi().getCharactersCharacterId(characterId, null, null);
+    }
+    /**
+     * 获取指定角色的基本信息
+     *
+     * @param characterId 角色ID
+     * @return 基本信息
+     */
+    @SneakyThrows
+    @Cacheable(cacheNames = "ESI:API:CharacterCorporationHistory", key = "#characterId")
+    public ApiResponse<List<CharacterCorporationHistoryResponse>> getCharacterCorporationHistory(int characterId) {
+        return new CharacterApi().getCharactersCharacterIdCorporationhistoryWithHttpInfo(characterId,null,null);
     }
 
     /**
