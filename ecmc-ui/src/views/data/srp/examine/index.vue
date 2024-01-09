@@ -98,6 +98,7 @@ const [registerTable, { reload }] = useTable({
   beforeFetch(params) {
     return { ...params, all: true }
   },
+
   actionColumn: {
     width: 120,
     title: '操作',

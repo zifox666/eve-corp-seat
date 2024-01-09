@@ -35,6 +35,11 @@
     status.value = data?.status
     characterName.value = data?.characterName
     rowId.value = data.record.id
+    console.log(data)
+    setFieldsValue({
+      spContent: data?.spContent || (unref(status) === 2 ? '请打开EVE钱包，检查自动邮件发送时间附近的交易记录，筛选项改为军团账户支取。' : '不符合补损规定/没有相关条例，若有异议请联系梧间栖或者游戏内邮件Unt1L 1tG0nE说明情况。'), // 设置字段的默认值
+      amount: data.record.amount
+    })
   })
 
 

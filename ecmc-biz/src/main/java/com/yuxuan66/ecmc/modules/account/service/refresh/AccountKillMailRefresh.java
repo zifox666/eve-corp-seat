@@ -17,6 +17,7 @@ import net.troja.eve.esi.api.KillmailsApi;
 import net.troja.eve.esi.model.CharacterKillmailsResponse;
 import net.troja.eve.esi.model.KillmailItem;
 import net.troja.eve.esi.model.KillmailResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +38,7 @@ import java.util.Objects;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-@HTTPProxy(host = "192.168.0.110" , port = "7890")
+@HTTPProxy(host = "192.168.1.7" , port = "7890")
 public class AccountKillMailRefresh {
 
     private final EveCache eveCache;
@@ -46,16 +47,21 @@ public class AccountKillMailRefresh {
     @Resource
     private AccountKillMailItemMapper accountKillMailItemMapper;
 
+    @Value("${proxy.host}")
+    private String proxyHost;
+
+    @Value("${proxy.port}")
+    private String proxyPort;
     @Async("threadPoolTaskExecutor")
     public void refresh(UserAccount userAccount, Map<Integer,Type> typeMap,List<AccountKillMail> killMailList) {
 
         // 设置 HTTP 代理
-        System.setProperty("http.proxyHost", "192.168.0.110");
-        System.setProperty("http.proxyPort", "7890");
+        System.setProperty("http.proxyHost", proxyHost);
+        System.setProperty("http.proxyPort", proxyPort);
 
         // 设置 HTTPS 代理
-        System.setProperty("https.proxyHost", "192.168.0.110");
-        System.setProperty("https.proxyPort", "7890");
+        System.setProperty("https.proxyHost", proxyHost);
+        System.setProperty("https.proxyPort", proxyPort);
 
         userAccount.esiClient();
         KillmailsApi kmApi = new KillmailsApi();

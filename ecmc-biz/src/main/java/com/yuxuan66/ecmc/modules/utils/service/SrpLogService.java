@@ -29,6 +29,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -50,6 +51,8 @@ public class SrpLogService extends BaseService<SrpLog, SrpLogMapper> {
     @Resource
     private AccountKillMailMapper accountKillMailMapper;
     private final UserAccountService userAccountService;
+    @Resource
+    private SrpShipAmountService srpShipAmountService;
 
     /**
      * 分页查询补损提交记录
@@ -75,9 +78,9 @@ public class SrpLogService extends BaseService<SrpLog, SrpLogMapper> {
             throw new BizException("此KM已经提交过了，请不要重复提交");
         }
         srpLog.setUserId(StpUtil.getLoginId());
-
+//        System.out.println(srpLog.get);
         AccountKillMail killMail = accountKillMailMapper.selectById(srpLog.getKillMailId());
-
+        System.out.println(userAccountMapper.selectById(killMail.getAccountId()));
         // 黑名单拦截
         List<SrpBlacklist> srpBlacklistList = srpBlacklistMapper.selectList(new QueryWrapper<SrpBlacklist>().eq("user_id", StpUtil.getLoginId()).lt("start_time", killMail.getKillMailTime())
                 .gt("end_time", killMail.getKillMailTime()));
@@ -113,6 +116,17 @@ public class SrpLogService extends BaseService<SrpLog, SrpLogMapper> {
                 }
             }
         }
+
+//        添加舰船参考补损价
+        Integer shipTypeId = accountKillMailMapper.selectById(srpLog.getKillMailId()).getShipTypeId();
+        System.out.println(shipTypeId);
+//        try{
+        BigDecimal amount = srpShipAmountService.getAmountByShipId(shipTypeId);
+        System.out.println(amount);
+        srpLog.setAmount(amount);
+//        }catch (Exception e){
+//
+//        }
 
         srpLog.insert();
     }

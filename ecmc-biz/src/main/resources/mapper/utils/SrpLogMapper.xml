@@ -9,6 +9,7 @@
         <result column="user_id" property="userId"/>
         <result column="status" property="status"/>
         <result column="kill_mail_id" property="killMailId"/>
+        <result column="amount" property="amount"/>
         <result column="content" property="content"/>
         <result column="sp_content" property="spContent"/>
         <result column="create_time" property="createTime"/>
@@ -41,7 +42,7 @@
 
     <!-- 分页查询补损提交记录 -->
     <select id="selectSrpLog" resultMap="srpLog">
-        select *,cakm.id kmId,cakm.kill_mail_id realKmId from corp_srp_log csl left join corp_account_kill_mail cakm on
+        select *,cakm.id kmId,cakm.kill_mail_id realKmId ,csl.amount from corp_srp_log csl left join corp_account_kill_mail cakm on
         csl.kill_mail_id = cakm.id
         <where>
             <if test="query.userId != null">

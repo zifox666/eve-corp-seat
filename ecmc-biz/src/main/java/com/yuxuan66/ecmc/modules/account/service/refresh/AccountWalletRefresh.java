@@ -13,6 +13,7 @@ import net.troja.eve.esi.api.UniverseApi;
 import net.troja.eve.esi.api.WalletApi;
 import net.troja.eve.esi.model.CharacterWalletJournalResponse;
 import net.troja.eve.esi.model.UniverseNamesResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -35,23 +36,27 @@ import cn.hutool.http.HttpUtil;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-@HTTPProxy(host = "192.168.0.110" , port = "7890")
+@HTTPProxy(host = "192.168.1.7" , port = "7890")
 public class AccountWalletRefresh {
 
     private final EveCache eveCache;
+    @Value("${proxy.host}")
+    private String proxyHost;
 
+    @Value("${proxy.port}")
+    private String proxyPort;
     @Resource
     private AccountWalletMapper accountWalletMapper;
 
     @Async("threadPoolTaskExecutor")
     public void refresh(UserAccount userAccount) {
         // 设置 HTTP 代理
-        System.setProperty("http.proxyHost", "192.168.0.110");
-        System.setProperty("http.proxyPort", "7890");
+        System.setProperty("http.proxyHost", proxyHost);
+        System.setProperty("http.proxyPort", proxyPort);
 
         // 设置 HTTPS 代理
-        System.setProperty("https.proxyHost", "192.168.0.110");
-        System.setProperty("https.proxyPort", "7890");
+        System.setProperty("https.proxyHost", proxyHost);
+        System.setProperty("https.proxyPort", proxyPort);
         userAccount.esiClient();
         WalletApi walletApi = new WalletApi();
         try {

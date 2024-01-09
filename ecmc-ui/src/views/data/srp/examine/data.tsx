@@ -30,6 +30,15 @@ export const columns: BasicColumn[] = [
     }
   },
   {
+    title: '参考补损金额',
+    width: 150,
+    align: 'left',
+    customRender({ record }){
+      // console.log(record)
+      return toThousands(record.amount) + ' ISK'
+    }
+  },
+  {
     title: '损失地点',
     dataIndex: 'solarSystemName',
     width: 100,
@@ -49,6 +58,15 @@ export const columns: BasicColumn[] = [
     title: '集结信息',
     dataIndex: 'content',
     width: 150,
+  },
+  {
+    title: 'NPC',
+    dataIndex: 'NPC',
+    width: 80,
+    customRender({ record }) {
+      return <Tag
+        color={record.accountKillMail.isNpc === false ? 'green' : 'yellow'}>{record.accountKillMail.isNpc === false ? '否' :  '是'}</Tag>
+    }
   },
   {
     title: '状态',
@@ -117,4 +135,12 @@ export const crudFormSchema: FormSchema[] = [
       rows: 5
     }
   },
+  {
+    field: 'amount',
+    label: '实补金额',
+    component: 'Input',
+    componentProps: {
+      placeholder: '请输入实补金额'
+    }
+  }
 ]

@@ -17,7 +17,7 @@ import java.util.*;
  * @author Sir丶雨轩
  * @since 2022/12/27
  */
-@HTTPProxy(host = "192.168.0.110" , port = "7890")
+@HTTPProxy(host = "192.168.1.7" , port = "7890")
 public class BaseRefresh {
 
 
