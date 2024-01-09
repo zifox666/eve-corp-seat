@@ -14,6 +14,7 @@ import com.yuxuan66.ecmc.support.base.BaseService;
 import com.yuxuan66.ecmc.support.base.resp.Ps;
 import com.yuxuan66.ecmc.support.exception.BizException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -33,7 +34,6 @@ public class SrpBlacklistService extends BaseService<SrpBlacklist, SrpBlacklistM
 
     @Resource
     private UserAccountMapper userAccountMapper;
-
     /**
      * 分页查询补损黑名单
      * @param query 查询条件

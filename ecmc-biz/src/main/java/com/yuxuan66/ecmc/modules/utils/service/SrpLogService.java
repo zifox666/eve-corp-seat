@@ -29,6 +29,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -50,6 +51,8 @@ public class SrpLogService extends BaseService<SrpLog, SrpLogMapper> {
     @Resource
     private AccountKillMailMapper accountKillMailMapper;
     private final UserAccountService userAccountService;
+    @Resource
+    private SrpShipAmountService srpShipAmountService;
 
     /**
      * 分页查询补损提交记录
@@ -113,6 +116,17 @@ public class SrpLogService extends BaseService<SrpLog, SrpLogMapper> {
                 }
             }
         }
+
+//        添加舰船参考补损价
+        Integer shipTypeId = accountKillMailMapper.selectById(srpLog.getKillMailId()).getShipTypeId();
+        System.out.println(shipTypeId);
+//        try{
+        BigDecimal amount = srpShipAmountService.getAmountByShipId(shipTypeId);
+        System.out.println(amount);
+        srpLog.setAmount(amount);
+//        }catch (Exception e){
+//
+//        }
 
         srpLog.insert();
     }

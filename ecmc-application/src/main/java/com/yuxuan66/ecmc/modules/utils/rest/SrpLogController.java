@@ -25,7 +25,7 @@ public class SrpLogController extends BaseController<SrpLogService> {
     public Ps list(SrpLogQuery logQuery){
 
         Ps list = baseService.list(logQuery);
-        System.out.println(list);
+//        System.out.println(list);
         return list;
     }
 
