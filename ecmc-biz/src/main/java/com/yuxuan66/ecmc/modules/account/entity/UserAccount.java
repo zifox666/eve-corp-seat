@@ -158,7 +158,7 @@ public class UserAccount extends BaseEntity<UserAccount> implements Serializable
             if (this.getAccessExp() != null && this.getAccessExp().getTime() - minute > System.currentTimeMillis()) {
                 return client;
             }
-            Proxy proxy = new Proxy(Proxy.Type.SOCKS, new InetSocketAddress(proxyHost, Integer.parseInt(proxyPort)));
+            Proxy proxy = new Proxy(Proxy.Type.SOCKS, new InetSocketAddress("192.168.1.7",7890));
             // 刷新Token
             HttpRequest request = HttpUtil.createPost("https://login.eveonline.com/v2/oauth/token");
             request.setProxy(proxy);
