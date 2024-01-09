@@ -2,12 +2,17 @@ package com.yuxuan66.ecmc;
 
 import com.dtflys.forest.annotation.HTTPProxy;
 import com.yuxuan66.ecmc.job.modules.SdeJob;
+import org.springframework.aop.framework.ProxyConfig;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.boot.CommandLineRunner;
+
+import javax.annotation.Resource;
+import java.lang.reflect.Proxy;
 
 
 /**

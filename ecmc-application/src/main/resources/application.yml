@@ -10,3 +10,7 @@ spring:
       enabled: true
       max-file-size: -1
       max-request-size: -1
+
+proxy:
+  host: 127.0.0.1
+  port: 7890

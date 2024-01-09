@@ -80,7 +80,7 @@ public class SrpLogService extends BaseService<SrpLog, SrpLogMapper> {
         srpLog.setUserId(StpUtil.getLoginId());
 //        System.out.println(srpLog.get);
         AccountKillMail killMail = accountKillMailMapper.selectById(srpLog.getKillMailId());
-
+        System.out.println(userAccountMapper.selectById(killMail.getAccountId()));
         // 黑名单拦截
         List<SrpBlacklist> srpBlacklistList = srpBlacklistMapper.selectList(new QueryWrapper<SrpBlacklist>().eq("user_id", StpUtil.getLoginId()).lt("start_time", killMail.getKillMailTime())
                 .gt("end_time", killMail.getKillMailTime()));

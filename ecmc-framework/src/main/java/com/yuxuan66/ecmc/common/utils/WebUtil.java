@@ -61,7 +61,7 @@ public class WebUtil {
             ip = request.getRemoteAddr();
         }
         String comma = ",";
-        String localhost = "192.168.1.7";
+        String localhost = "127.0.0.1";
         if (ip.contains(comma)) {
             ip = ip.split(",")[0];
         }
