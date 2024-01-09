@@ -29,20 +29,25 @@ import com.yuxuan66.ecmc.modules.utils.mapper.SrpLogMapper;
 import com.yuxuan66.ecmc.support.base.BaseQuery;
 import com.yuxuan66.ecmc.support.base.BaseService;
 import com.yuxuan66.ecmc.support.base.resp.Ps;
+import com.yuxuan66.ecmc.support.base.resp.Rs;
 import com.yuxuan66.ecmc.support.exception.BizException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.troja.eve.esi.ApiException;
+import net.troja.eve.esi.ApiResponse;
 import net.troja.eve.esi.api.*;
 import net.troja.eve.esi.auth.JWT;
 import net.troja.eve.esi.auth.OAuth;
 import net.troja.eve.esi.model.*;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -456,6 +461,19 @@ public class UserAccountService extends BaseService<UserAccount, UserAccountMapp
         for (UserAccount userAccount : userAccountList) {
             accountKillMailRefresh.refresh(userAccount, typeMap, killMailList);
         }
+    }
+
+    /**
+     * 根据角色id查询入团时间
+     * @param characterId 角色id
+     * @return 角色列表
+     */
+    public long CharacterHistory(int characterId){
+        ApiResponse<List<CharacterCorporationHistoryResponse>> response = eveCache.getCharacterCorporationHistory(characterId);
+        OffsetDateTime date = response.getData().get(0).getStartDate();
+        OffsetDateTime now = OffsetDateTime.now();
+        long daysDifference = ChronoUnit.DAYS.between(date, now);
+        return daysDifference;
     }
 
 }

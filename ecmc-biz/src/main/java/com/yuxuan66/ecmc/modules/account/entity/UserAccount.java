@@ -46,13 +46,7 @@ import java.sql.Timestamp;
 @HTTPProxy(host = "192.168.1.7" , port = "7890")
 public class UserAccount extends BaseEntity<UserAccount> implements Serializable {
 
-    @Value("${proxy.host}")
-    @TableField(exist = false)
-    private String proxyHost;
 
-    @Value("${proxy.port}")
-    @TableField(exist = false)
-    private String proxyPort;
     @Serial
     private static final long serialVersionUID = -80069397898096666L;
 
@@ -150,12 +144,12 @@ public class UserAccount extends BaseEntity<UserAccount> implements Serializable
 
     public ApiClient esiClient() {
         // 设置 HTTP 代理
-        System.setProperty("http.proxyHost", proxyHost);
-        System.setProperty("http.proxyPort", proxyPort);
+        System.setProperty("http.proxyHost", "192.168.1.7");
+        System.setProperty("http.proxyPort", "7890");
 
         // 设置 HTTPS 代理
-        System.setProperty("https.proxyHost", proxyHost);
-        System.setProperty("https.proxyPort", proxyPort);
+        System.setProperty("https.proxyHost", "192.168.1.7");
+        System.setProperty("https.proxyPort", "7890");
         try {
             // 创建ESI对象,刷新Token
             ApiClient client = EsiHelper.newClient();
@@ -164,7 +158,7 @@ public class UserAccount extends BaseEntity<UserAccount> implements Serializable
             if (this.getAccessExp() != null && this.getAccessExp().getTime() - minute > System.currentTimeMillis()) {
                 return client;
             }
-            Proxy proxy = new Proxy(Proxy.Type.SOCKS, new InetSocketAddress(proxyHost, Integer.parseInt(proxyPort)));
+            Proxy proxy = new Proxy(Proxy.Type.SOCKS, new InetSocketAddress("192.168.1.7",7890));
             // 刷新Token
             HttpRequest request = HttpUtil.createPost("https://login.eveonline.com/v2/oauth/token");
             request.setProxy(proxy);

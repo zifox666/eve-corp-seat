@@ -34,7 +34,6 @@ export const columns: BasicColumn[] = [
     width: 150,
     align: 'left',
     customRender({ record }){
-      // console.log(record)
       return toThousands(record.amount) + ' ISK'
     }
   },
@@ -82,6 +81,16 @@ export const columns: BasicColumn[] = [
     dataIndex: 'createBy',
     width: 100,
   },
+  // {
+  //   title: '加团天数',
+  //   dataIndex: 'history',
+  //   width: 150,
+  //   customRender({ record }) {
+  //     console.log(record)
+  //     // const response = await history(record.id);
+  //     // return
+  //   }
+  // },
   {
     title: '提交时间',
     dataIndex: 'createTime',

@@ -157,4 +157,14 @@ public class UserAccountController extends BaseController<UserAccountService> {
     public Rs listAccount(@PathVariable String characterName){
         return Rs.ok(baseService.listAccount(characterName));
     }
+
+    /**
+     * 根据角色id查询入团时间
+     * @param characterId 角色id
+     * @return 角色列表
+     */
+    @GetMapping(path = "/CharacterHistory/{characterId}")
+    public Rs CharacterHistory(@PathVariable int characterId){
+        return Rs.ok(baseService.CharacterHistory(characterId));
+    }
 }

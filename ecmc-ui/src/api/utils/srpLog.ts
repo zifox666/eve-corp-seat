@@ -2,6 +2,7 @@ import { defHttp } from '/@/utils/http/axios'
 
 enum Api {
   Base = '/srpLog',
+  History='/CharacterHistory'
 }
 
 
@@ -26,3 +27,11 @@ export const edit = (srpLog?: object) => {
 export const list = (params: object) => {
   return defHttp.get({ url: Api.Base, params })
 }
+
+/**
+ * 查询入团时间
+ */
+export const history = (params: number) => {
+  return defHttp.get({ url: Api.History+'/'+params })
+}
+
