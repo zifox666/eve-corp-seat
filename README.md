@@ -1,8 +1,9 @@
+不再继续更改
+
 ## 项目介绍
 修改自雨轩的cacx军团管理系统，此版本仅做出小部分调整 
 
 ## 项目目录介绍
-有问题请邮件zifox666@gmail.com
 1. application = 军团系统主程序API
 2. biz = 军团业务处理中心
 3. discord = discord机器人程序
